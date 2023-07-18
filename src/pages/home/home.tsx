@@ -1,7 +1,12 @@
 import React from "react";
 import "./home.scss";
+import HeroBanner from "./heroBanner/HeroBanner";
 const home = () => {
-  return <div>home</div>;
+  return (
+    <div className="homepage">
+      <HeroBanner></HeroBanner>
+    </div>
+  );
 };
 
 export default home;
