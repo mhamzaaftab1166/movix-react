@@ -8,8 +8,9 @@ const headers = {
 export interface movie {
   id: number;
   title: string;
+  backdrop_path: string;
 }
-interface movies {
+export interface movies {
   results: movie[];
 }
 export const fetchData = (
@@ -17,4 +18,10 @@ export const fetchData = (
   params?: AxiosRequestConfig["params"]
 ) => {
   return axios.get<movies>(BASE_URL + url, { headers, params });
+};
+export const fetchUrls = (
+  url: string,
+  params?: AxiosRequestConfig["params"]
+) => {
+  return axios.get(BASE_URL + url, { headers, params });
 };

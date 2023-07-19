@@ -22,11 +22,15 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.10.0",
     "react-select": "^5.7.0",
-    "sass": "^1.57.1"
+    "sass": "^1.57.1",
+    "simple-zustand-devtools": "^1.1.0",
+    "zustand": "^4.3.7"
   },
   "devDependencies": {
+    "@types/node": "^20.4.2",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
+    "@types/react-lazy-load-image-component": "^1.5.3",
     "@vitejs/plugin-react": "^3.1.0",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.26",
