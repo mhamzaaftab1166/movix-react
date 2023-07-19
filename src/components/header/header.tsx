@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
 import { SlMenu } from "react-icons/sl";
 import { VscChromeClose } from "react-icons/vsc";
@@ -18,6 +18,30 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, [location]);
+
+  const controlNavbar = () => {
+    const scrollY = window.scrollY;
+    if (scrollY > 200) {
+      if (scrollY > lastScrollY && !mobileMenu) {
+        setShow("hide");
+      } else {
+        setShow("show");
+      }
+    } else {
+      setShow("top");
+    }
+    setLastScrollY(scrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", controlNavbar);
+    return () => {
+      window.removeEventListener("scroll", controlNavbar);
+    };
+  }, [lastScrollY]);
   const handleSearch = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter" && searchQuery.length > 0) {
       navigate(`/search/movie/${searchQuery}`);
