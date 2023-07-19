@@ -8,7 +8,10 @@ const headers = {
 export interface movie {
   id: number;
   title: string;
+  name: string;
+  release_Date: string;
   backdrop_path: string;
+  poster_path: string;
 }
 export interface movies {
   results: movie[];
