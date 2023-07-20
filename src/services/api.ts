@@ -35,8 +35,16 @@ export interface detail {
 }
 export interface movies {
   results: movie[];
+  total_results: number;
+  total_pages: number;
 }
 export const fetchData = (
+  url: string,
+  params?: AxiosRequestConfig["params"]
+) => {
+  return axios.get<movies>(BASE_URL + url, { headers, params });
+};
+export const fetchSearch = (
   url: string,
   params?: AxiosRequestConfig["params"]
 ) => {
