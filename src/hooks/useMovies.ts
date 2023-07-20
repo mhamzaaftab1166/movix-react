@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import { detail, fetchDetail } from "../services/api";
+import { fetchData, movies } from "../services/api";
 const useMovies = (url: string) => {
-  const [data, setData] = useState<detail>({} as detail);
+  const [data, setData] = useState<movies>({} as movies);
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
     setLoading(true);
-    setData({} as detail);
+    setData({} as movies);
     setError("");
 
-    fetchDetail(url)
+    fetchData(url)
       .then((res) => {
         setLoading(false);
         setData(res.data);

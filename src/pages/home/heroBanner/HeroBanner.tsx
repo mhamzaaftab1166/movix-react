@@ -1,7 +1,7 @@
 import React, { useState, KeyboardEvent, useEffect } from "react";
 import "./HeroBanner.scss";
 import { useNavigate } from "react-router-dom";
-import useMovies from "../../../hooks/useMovie";
+import useMovies from "../../../hooks/useMovies";
 import useConfig from "../../../hooks/useConfig";
 import ContentWrapper from "../../../components/contentWrapper/contentWrapper";
 import Img from "../../../components/LazyLoadImage/Img";

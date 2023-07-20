@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ContentWrapper from "../../../components/contentWrapper/contentWrapper";
 import SwitchTabs from "../../../components/switchTabs/SwitchTabs";
-import useMovies from "../../../hooks/useMovie";
+import useMovies from "../../../hooks/useMovies";
 import Carousel from "../../../components/carousel/Carousel";
 
 const TopRated = () => {
