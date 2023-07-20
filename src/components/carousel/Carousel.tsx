@@ -18,16 +18,28 @@ import CircleRating from "../circleRating/CircleRating";
 interface Props {
   data: movie[];
   isLoading: boolean;
+  endpoint?: string;
 }
 
-const Carousel: React.FC<Props> = ({ data, isLoading }) => {
-  const carouselContainerRef = useRef();
+const Carousel: React.FC<Props> = ({ data, isLoading, endpoint }) => {
+  const carouselContainerRef = useRef<HTMLDivElement>(null);
   const { data: urls } = useConfig("/configuration");
   const navigate = useNavigate();
 
   const navigation = (direction: string) => {
-    // Handle navigation logic here
+    const container = carouselContainerRef.current;
+    if (container) {
+      const scrollAmount =
+        direction === "left"
+          ? container.scrollLeft - (container.offsetWidth + 20)
+          : container.scrollLeft + (container.offsetWidth + 20);
+      container.scrollTo({
+        left: scrollAmount,
+        behavior: "smooth",
+      });
+    }
   };
+
   const skeletonItem = () => {
     return (
       <div className="skeletonItem">
@@ -43,22 +55,30 @@ const Carousel: React.FC<Props> = ({ data, isLoading }) => {
     <div className="carousel">
       <ContentWrapper>
         <BsFillArrowLeftCircleFill
+          color="white"
           onClick={() => navigation("left")}
           className="carouselLeftNav arrow"
         />
         <BsFillArrowRightCircleFill
+          color="white"
           onClick={() => navigation("right")}
           className="carouselRightNav arrow"
         />
         {!isLoading ? (
-          <div className="carouselItems">
+          <div className="carouselItems" ref={carouselContainerRef}>
             {data?.map((item) => {
               const posterUrl = item.poster_path
                 ? urls.poster + item.poster_path
                 : PosterFallback;
 
               return (
-                <div key={item.id} className="carouselItem">
+                <div
+                  key={item.id}
+                  className="carouselItem"
+                  onClick={() =>
+                    navigate(`/${item.media_type || endpoint}/${item.id}`)
+                  }
+                >
                   <div className="posterBlock">
                     <Img
                       src={posterUrl}
