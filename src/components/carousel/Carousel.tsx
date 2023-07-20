@@ -19,9 +19,10 @@ interface Props {
   data: movie[];
   isLoading: boolean;
   endpoint?: string;
+  title?: string;
 }
 
-const Carousel: React.FC<Props> = ({ data, isLoading, endpoint }) => {
+const Carousel: React.FC<Props> = ({ data, isLoading, endpoint, title }) => {
   const carouselContainerRef = useRef<HTMLDivElement>(null);
   const { data: urls } = useConfig("/configuration");
   const navigate = useNavigate();
@@ -54,6 +55,7 @@ const Carousel: React.FC<Props> = ({ data, isLoading, endpoint }) => {
   return (
     <div className="carousel">
       <ContentWrapper>
+        {title && <div className="carouselTitle">{title}</div>}
         <BsFillArrowLeftCircleFill
           color="white"
           onClick={() => navigation("left")}

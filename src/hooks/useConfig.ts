@@ -5,7 +5,7 @@ interface Config {
   poster: string;
   profile: string;
 }
-const useMovies = (url: string) => {
+const useConfig = (url: string) => {
   const [data, setData] = useState<Config>({} as Config);
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -34,4 +34,4 @@ const useMovies = (url: string) => {
   return { data, isLoading, error };
 };
 
-export default useMovies;
+export default useConfig;

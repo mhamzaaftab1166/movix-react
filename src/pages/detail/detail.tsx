@@ -4,10 +4,11 @@ import { useParams } from "react-router-dom";
 import DetailsBanner from "./detailBanner/DetailBanner";
 import useVideos from "../../hooks/useVideos";
 import useCredits from "../../hooks/useCredits";
-import Cast from "./cast/cast";
-
+import Cast from "./cast/Cast";
+import Similar from "./carosels/Similar";
+import Recommendation from "./carosels/Recomendation";
 const Detail = () => {
-  const { mediaType, id } = useParams();
+  const { mediaType, id } = useParams<{ mediaType: string; id: string }>(); // Add type assertion for mediaType
   const { data: videos, isLoading: videoLoading } = useVideos(
     `/${mediaType}/${id}/videos`
   );
@@ -27,6 +28,8 @@ const Detail = () => {
     <div>
       <DetailsBanner video={videos.results[0]} crew={credits.crew} />
       <Cast data={credits.cast} loading={creditLoading}></Cast>
+      <Similar mediaType={mediaType} id={id}></Similar>
+      <Recommendation mediaType={mediaType} id={id}></Recommendation>
     </div>
   );
 };
