@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import DetailsBanner from "./detailBanner/DetailBanner";
 import useVideos from "../../hooks/useVideos";
 import useCredits from "../../hooks/useCredits";
+import Cast from "./cast/cast";
 
 const Detail = () => {
   const { mediaType, id } = useParams();
@@ -25,6 +26,7 @@ const Detail = () => {
   return (
     <div>
       <DetailsBanner video={videos.results[0]} crew={credits.crew} />
+      <Cast data={credits.cast} loading={creditLoading}></Cast>
     </div>
   );
 };

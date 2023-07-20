@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { detail, fetchVideos } from "../services/api";
 const useVideos = (url: string) => {
-  const [data, setData] = useState<{ crew: any[] }>({} as { crew: any[] });
+  const [data, setData] = useState<{ crew: any[]; cast: any[] }>(
+    {} as { crew: any[]; cast: any[] }
+  );
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
     setLoading(true);
-    setData({} as { crew: any[] });
+    setData({} as { crew: any[]; cast: any[] });
     setError("");
 
     fetchVideos(url)
