@@ -1,14 +1,30 @@
 import React from "react";
 import "./detail.scss";
 import { useParams } from "react-router-dom";
-import useMovies from "../../hooks/useMovies";
 import DetailsBanner from "./detailBanner/DetailBanner";
+import useVideos from "../../hooks/useVideos";
+import useCredits from "../../hooks/useCredits";
+
 const Detail = () => {
   const { mediaType, id } = useParams();
-  const { data, isLoading } = useMovies(`/${mediaType}/${id}`);
+  const { data: videos, isLoading: videoLoading } = useVideos(
+    `/${mediaType}/${id}/videos`
+  );
+  const { data: credits, isLoading: creditLoading } = useCredits(
+    `/${mediaType}/${id}/credits`
+  );
+
+  if (videoLoading || creditLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!videos?.results?.length || !credits?.crew?.length) {
+    return <div>Data not available</div>;
+  }
+
   return (
     <div>
-      <DetailsBanner video={1} crew={1}></DetailsBanner>
+      <DetailsBanner video={videos.results[0]} crew={credits.crew} />
     </div>
   );
 };
