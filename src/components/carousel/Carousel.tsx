@@ -13,6 +13,7 @@ import PosterFallback from "../../assets/no-poster.png";
 import "./carousel.scss";
 import { movie } from "../../services/api";
 import useConfig from "../../hooks/useConfig";
+import CircleRating from "../circleRating/CircleRating";
 
 interface Props {
   data: movie[];
@@ -63,6 +64,9 @@ const Carousel: React.FC<Props> = ({ data, isLoading }) => {
                       src={posterUrl}
                       className={".lazy-load-image-background"}
                     />
+                    <CircleRating
+                      rating={parseFloat(item.vote_average.toFixed(1))}
+                    ></CircleRating>
                   </div>
                   <div className="textBlock">
                     <span className="title">{item.title || item.name}</span>

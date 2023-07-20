@@ -10,6 +10,7 @@ export interface movie {
   title: string;
   name: string;
   release_Date: string;
+  vote_average: number;
   backdrop_path: string;
   poster_path: string;
 }
