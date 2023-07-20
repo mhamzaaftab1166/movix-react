@@ -22,11 +22,15 @@ const HeroBanner = () => {
   }, [data]);
 
   const handleSearch = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter" && searchQuery.length > 0) {
+    if (event?.key === "Enter" && searchQuery.length > 0) {
       navigate(`/search/movie/${searchQuery}`);
     }
   };
-
+  const handleBtnSearch = () => {
+    if (searchQuery.length > 0) {
+      navigate(`/search/movie/${searchQuery}`);
+    }
+  };
   return (
     <div className="heroBanner">
       <div className="backdrop-img">
@@ -51,7 +55,7 @@ const HeroBanner = () => {
               type="text"
               placeholder="Search for a movie or TV show"
             />
-            <button>Search</button>
+            <button onClick={handleBtnSearch}>Search</button>
           </div>
         </div>
       </ContentWrapper>
